@@ -17,5 +17,4 @@ public class Task
     public int? CategoryId { get; set; }
     public Category Category { get; set; }
     public bool? Completed { get; set; }
-    
 }
