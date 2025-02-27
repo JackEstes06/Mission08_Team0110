@@ -3,9 +3,11 @@
 @model Mission08_0110.Models.Task
 
 <form method="post">
+    <input type="hidden" asp-for="TaskId"/>
+
     <div class="form-group">
         <label asp-for="TaskName">Task</label>
-        <input type="text" class="form-control" id="TaskName" name="TaskName" value="@Model.TaskName" required />
+        <input type="text" class="form-control" id="TaskName" name="TaskName" value="@Model.TaskName" required/>
     </div>
     <br/>
     <div class="form-group">
@@ -15,7 +17,7 @@
     <br/>
     <div class="form-group">
         <label asp-for="Quadrant">Quadrant</label>
-        <input type="number" class="form-control" id="Quadrant" name="Quadrant" value="@Model.Quadrant" required />
+        <input type="number" class="form-control" id="Quadrant" name="Quadrant" value="@Model.Quadrant" required/>
     </div>
     <br/>
     <div class="form-group">
