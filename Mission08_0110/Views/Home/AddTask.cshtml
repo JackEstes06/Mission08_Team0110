@@ -1,9 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿<h1>@ViewData["Title"]</h1>
 
-@model Mission8_0110.Models.Task
+@model Mission08_0110.Models.Task
 
 <form method="post">
     <div class="form-group">
@@ -25,7 +22,7 @@
         <label asp-for="CategoryId">Category</label>
         <select asp-for="CategoryId">
             <option value="">Please select a Category</option>
-            @foreach (Category c in ViewBag.Category)
+            @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId" selected="@(Model.CategoryId == c.CategoryId)">
                     @c.CategoryName
