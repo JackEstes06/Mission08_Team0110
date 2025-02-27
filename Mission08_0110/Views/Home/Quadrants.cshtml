@@ -1,12 +1,13 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model List<Mission08_0110.Models.Task>
 
 <div class="container">
     <div class="row">
         <div class="col-2">
-            <button asp-controller="Home" asp-action="AddTask" type="button" class="btn-info rounded-pill">Add a Task</button>
+            <button asp-controller="Home" asp-action="AddTask" type="button" class="btn-info rounded">Add a Task</button>
         </div>
         <div class="col-5 border">
             <h4 class="text-center">Urgent</h4>
@@ -20,6 +21,7 @@
             <h4>Important</h4>
         </div>
         <div class="col-5 border">
+            @* Quadrant 1 Urgent, Important *@
             <table width="100%" class="table-borderless table-hover table-striped">
                 <tr>
                     <th>Status</th>
@@ -31,36 +33,25 @@
                 </tr>
                 @foreach (var t in Model)
                 {
-                <tr>
-                    <td>
-                        <input type="checkbox" unchecked>
-                    </td>
-                    <td>@t.TaskName</td>
-                    <td>@t.DueDate</td>
-                    <td>@t.Category.CategoryName</td>
-                    <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
-                    <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class="btn btn-danger rounded">Delete</a></td>
-                </tr>
+                    if (t.Quadrant == 1)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" unchecked>
+                            </td>
+                            <td>@t.TaskName</td>
+                            <td>@t.DueDate</td>
+                            <td>@t.Category.CategoryName</td>
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class="btn btn-danger rounded">Delete</a></td>
+                        </tr>
+                    }
                 }
-                <tr>
-                    <td>
-                        <label >Completed?</label>
-                        <input type="checkbox">
-                    </td>
-                    <td>Assignment Name</td>
-                    <td>Saturday</td>
-                    <td>
-                        <select>
-                            <option value="1">Home</option>
-                            <option value="1">School</option>
-                        </select>
-                    </td>
-                    <td><button type="button" class="btn-info rounded">Edit</button></td>
-                    <td><button type="button" class="btn-danger rounded">Delete</button></td>
-                </tr>
             </table>
         </div>
+
         <div class="col-5 border">
+            @* Quadrant 2 Not Urgent, Important *@
             <table width="100%" class="table-borderless table-hover table-striped">
                 <tr>
                     <th>Status</th>
@@ -70,38 +61,22 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr>
-                    <td>
-                        <label >Completed?</label>
-                        <input type="checkbox">
-                    </td>
-                    <td>Test Name</td>
-                    <td>Wednesday</td>
-                    <td>
-                        <select>
-                            <option value="1">Home</option>
-                            <option value="1">School</option>
-                        </select>
-                    </td>
-                    <td><button type="button" class="btn-info rounded">Edit</button></td>
-                    <td><button type="button" class="btn-danger rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label >Completed?</label>
-                        <input type="checkbox">
-                    </td>
-                    <td>Assignment Name</td>
-                    <td>Saturday</td>
-                    <td>
-                        <select>
-                            <option value="1">Home</option>
-                            <option value="1">School</option>
-                        </select>
-                    </td>
-                    <td><button type="button" class="btn-info rounded">Edit</button></td>
-                    <td><button type="button" class="btn-danger rounded">Delete</button></td>
-                </tr>
+                @foreach (var t in Model)
+                {
+                    if (@t.Quadrant == 2)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" unchecked>
+                            </td>
+                            <td>@t.TaskName</td>
+                            <td>@t.DueDate</td>
+                            <td>@t.Category.CategoryName</td>
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class="btn btn-danger rounded">Delete</a></td>
+                        </tr>
+                    }
+                }
             </table>
         </div>
     </div>
@@ -110,20 +85,63 @@
             <h4>Not Important</h4>
         </div>
         <div class="col-5 border">
-            <ul>
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-                <li>item 4</li>
-            </ul>
+            @* Quadrant 3 Urgent, Not Important *@
+            <table width="100%" class="table-borderless table-hover table-striped">
+                <tr>
+                    <th>Status</th>
+                    <th>Task Name</th>
+                    <th>Due Date</th>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                @foreach (var t in Model)
+                {
+                    if (@t.Quadrant == 3)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" unchecked>
+                            </td>
+                            <td>@t.TaskName</td>
+                            <td>@t.DueDate</td>
+                            <td>@t.Category.CategoryName</td>
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class=" btn btn-danger rounded">Delete</a></td>
+                        </tr>
+                    }
+                }
+            </table>
         </div>
         <div class="col-5 border">
-            <ul>
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-                <li>item 4</li>
-            </ul>
+            @* Quadrant 4 Not Urgent, Not Important *@
+            <table width="100%" class="table-borderless table-hover table-striped">
+                <tr>
+                    <th>Status</th>
+                    <th>Task Name</th>
+                    <th>Due Date</th>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                @foreach (var t in Model)
+                {
+                    if (@t.Quadrant == 4)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" unchecked>
+                            </td>
+                            <td>@t.TaskName</td>
+                            <td>@t.DueDate</td>
+                            <td>@t.Category.CategoryName</td>
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class=" btn btn-danger rounded">Delete</a></td>
+                        </tr>
+
+                    }
+                }
+            </table>
         </div>
     </div>
 </div>
