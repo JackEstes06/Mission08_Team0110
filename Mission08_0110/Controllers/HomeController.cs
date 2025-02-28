@@ -20,8 +20,6 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    
     
     [HttpGet]
     public IActionResult AddTask()
@@ -45,20 +43,16 @@ public class HomeController : Controller
             return View(task);
         }
     }
-
-
-
+    
     [HttpGet]
     public IActionResult Quadrants()
     {
         var tasks = _context.Tasks
             .Include(x => x.Category)
             .ToList();
-        return View(tasks);
+        return View("Quadrants", tasks);
     }
-
-
-
+    
     [HttpGet]
     public IActionResult Edit(int id)
     {

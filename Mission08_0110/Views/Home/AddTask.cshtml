@@ -1,6 +1,46 @@
-﻿@{
-    ViewData["Title"] = "Add Task";
-}
-<h1>@ViewData["Title"]</h1>
+﻿<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@model Mission08_0110.Models.Task
+
+<form method="post">
+    <input type="hidden" asp-for="TaskId"/>
+
+    <div class="form-group">
+        <label asp-for="TaskName">Task</label>
+        <input type="text" class="form-control" id="TaskName" name="TaskName" value="@Model.TaskName" required/>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="DueDate">Due Date</label>
+        <textarea class="form-control" id="DueDate" name="DueDate" required>@Model.DueDate</textarea>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="Quadrant">Quadrant</label>
+        <input type="number" class="form-control" id="Quadrant" name="Quadrant" value="@Model.Quadrant" required/>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId">
+            <option value="">Please select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId" selected="@(Model.CategoryId == c.CategoryId)">
+                    @c.CategoryName
+                </option>
+            }
+        </select>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="Completed">Completed?</label>
+        <select asp-for="Completed" class="form-control" id="Completed">
+            <option value="">Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Create</button>
+</form>

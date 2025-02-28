@@ -1,8 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    Layout = "_Layout";
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="text-center">
+        <!-- Header content is handled by the shared layout, no need to include it here -->
+        <h1 class="mb-4">What are you gonna do today?</h1>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Home" asp-action="AddTask"  class="btn btn-primary btn-lg">Add Task</a>
+            <a asp-controller="Home" asp-action="Quadrants" class="btn btn-secondary btn-lg">View Tasks</a>
+        </div>
+    </div>
 </div>
+
