@@ -15,7 +15,7 @@ public class Task
     public int Quadrant { get; set; }
     [ForeignKey("CategoryId")]
     public int? CategoryId { get; set; }
-    public Category Category { get; set; }
+    public Category? Category { get; set; }
     public bool? Completed { get; set; }
     
 }
