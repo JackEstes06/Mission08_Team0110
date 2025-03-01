@@ -49,8 +49,17 @@ public class HomeController : Controller
     {
         var tasks = _context.Tasks
             .Include(x => x.Category)
+            .Where(x=>x.Completed == false)
             .ToList();
         return View("Quadrants", tasks);
+    }
+
+    [HttpPost]
+    public IActionResult Quadrants(Task updated)
+    {
+        _context.Update(updated);
+        _context.SaveChanges();
+        return RedirectToAction("Quadrants");
     }
     
     [HttpGet]

@@ -5,9 +5,10 @@
 @model List<Mission08_0110.Models.Task>
 
 <div class="container">
+    <form method="post">
     <div class="row">
         <div class="col-2">
-            <button asp-controller="Home" asp-action="AddTask" type="button" class="btn-info rounded">Add a Task</button>
+            <a asp-controller="Home" asp-action="AddTask" type="button" class="btn btn-info rounded">Add a Task</a>
         </div>
         <div class="col-5 border">
             <h4 class="text-center">Urgent</h4>
@@ -35,9 +36,9 @@
                 {
                     if (t.Quadrant == 1)
                     {
-                        <tr>
+                        <tr> @t.Completed
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" @(t.Completed == true ? "checked" : "")/>
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -67,7 +68,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" @(t.Completed == true ? "checked" : "")/>
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -101,7 +102,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" @(t.Completed == true ? "checked" : "")/>
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -130,7 +131,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" @(t.Completed == true ? "checked" : "")/>
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -138,10 +139,16 @@
                             <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
                             <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class=" btn btn-danger rounded">Delete</a></td>
                         </tr>
-
                     }
                 }
             </table>
         </div>
     </div>
+        <br>
+        <div class="row">
+            <div class="col-2 align-items-center">
+                <button type="submit" class="btn btn-info" width="20%">Update Tasks</button>
+            </div>
+        </div>
+    </form>
 </div>
