@@ -53,14 +53,6 @@ public class HomeController : Controller
             .ToList();
         return View("Quadrants", tasks);
     }
-
-    [HttpPost]
-    public IActionResult Quadrants(Task updated)
-    {
-        _context.Update(updated);
-        _context.SaveChanges();
-        return RedirectToAction("Quadrants");
-    }
     
     [HttpGet]
     public IActionResult Edit(int id)

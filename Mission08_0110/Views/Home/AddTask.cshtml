@@ -23,7 +23,7 @@
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
         <select asp-for="CategoryId">
-            <option value="">Please select a Category</option>
+            <option disabled selected>Please select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId" selected="@(Model.CategoryId == c.CategoryId)">
@@ -36,9 +36,9 @@
     <div class="form-group">
         <label asp-for="Completed">Completed?</label>
         <select asp-for="Completed" class="form-control" id="Completed">
-            <option value="">Select</option>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
+            <option disabled selected>Select</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
         </select>
     </div>
 
