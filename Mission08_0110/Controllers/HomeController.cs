@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mission08_0110.Models;
+using SQLitePCL;
 using Task = Mission08_0110.Models.Task;
 
 namespace Mission08_0110.Controllers;
@@ -27,28 +28,15 @@ public class HomeController : Controller
         ViewBag.Categories = _repo.Categories.ToList();
         return View(new Task());
     }
+    
     [HttpPost]
     public IActionResult AddTask(Task task)
     {
-        // Debugging: Check validation errors
-        if (!ModelState.IsValid)
-        {
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine(error.ErrorMessage);  // Log errors to console
-            }
-        }
-        if (ModelState.IsValid)
-        {
-            _repo.AddTask(task);
 
-            return RedirectToAction("Quadrants");
-        }
-        else
-        {
-            ViewBag.Categories = _repo.Categories.ToList();
-            return View(task);
-        }
+        _repo.Tasks.Add(task);
+        _repo.SaveChanges();
+
+        return RedirectToAction("Quadrants");
     }
     
     [HttpGet]
