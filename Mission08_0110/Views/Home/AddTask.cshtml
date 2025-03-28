@@ -12,18 +12,24 @@
     <br/>
     <div class="form-group">
         <label asp-for="DueDate">Due Date</label>
-        <textarea class="form-control" id="DueDate" name="DueDate" required>@Model.DueDate</textarea>
+        <input type="date" class="form-control" id="DueDate" name="DueDate" value="@Model.DueDate" required />
     </div>
     <br/>
     <div class="form-group">
         <label asp-for="Quadrant">Quadrant</label>
-        <input type="number" class="form-control" id="Quadrant" name="Quadrant" value="@Model.Quadrant" required/>
+        <select asp-for="Quadrant" class="form-control" id="Quadrant">
+            <option value="">Select</option>
+            <option value="1">Important/Urgent</option>
+            <option value="2">Important/Not Urgent</option>
+            <option value="3">Not Important/Urgent</option>
+            <option value="4">Not Important/Not Urgent</option>
+        </select>
     </div>
     <br/>
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
         <select asp-for="CategoryId">
-            <option value="">Please select a Category</option>
+            <option disabled selected>Please select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId" selected="@(Model.CategoryId == c.CategoryId)">
@@ -37,8 +43,8 @@
         <label asp-for="Completed">Completed?</label>
         <select asp-for="Completed" class="form-control" id="Completed">
             <option value="">Select</option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+            <option value="True">Yes</option>
+            <option value="False">No</option>
         </select>
     </div>
 

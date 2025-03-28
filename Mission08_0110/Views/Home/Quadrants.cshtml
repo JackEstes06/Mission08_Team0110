@@ -5,10 +5,14 @@
 @model List<Mission08_0110.Models.Task>
 
 <div class="container">
+    <br>
     <div class="row">
         <div class="col-2">
-            <button asp-controller="Home" asp-action="AddTask" type="button" class="btn-info rounded">Add a Task</button>
+            <form asp-controller="Home" asp-action="AddTask" method="get">
+                <button type="submit" class="btn btn-info rounded">Add a Task</button>
+            </form>
         </div>
+        <br/>
         <div class="col-5 border">
             <h4 class="text-center">Urgent</h4>
         </div>
@@ -24,7 +28,6 @@
             @* Quadrant 1 Urgent, Important *@
             <table width="100%" class="table-borderless table-hover table-striped">
                 <tr>
-                    <th>Status</th>
                     <th>Task Name</th>
                     <th>Due Date</th>
                     <th>Category</th>
@@ -37,7 +40,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "")/>
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -54,7 +57,6 @@
             @* Quadrant 2 Not Urgent, Important *@
             <table width="100%" class="table-borderless table-hover table-striped">
                 <tr>
-                    <th>Status</th>
                     <th>Task Name</th>
                     <th>Due Date</th>
                     <th>Category</th>
@@ -67,7 +69,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "") />
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -88,7 +90,6 @@
             @* Quadrant 3 Urgent, Not Important *@
             <table width="100%" class="table-borderless table-hover table-striped">
                 <tr>
-                    <th>Status</th>
                     <th>Task Name</th>
                     <th>Due Date</th>
                     <th>Category</th>
@@ -101,7 +102,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "") />
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -117,7 +118,6 @@
             @* Quadrant 4 Not Urgent, Not Important *@
             <table width="100%" class="table-borderless table-hover table-striped">
                 <tr>
-                    <th>Status</th>
                     <th>Task Name</th>
                     <th>Due Date</th>
                     <th>Category</th>
@@ -130,7 +130,7 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" unchecked>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "") />
                             </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
@@ -138,7 +138,6 @@
                             <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.TaskId" class="btn btn-info rounded">Edit</a></td>
                             <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@t.TaskId" class=" btn btn-danger rounded">Delete</a></td>
                         </tr>
-
                     }
                 }
             </table>
