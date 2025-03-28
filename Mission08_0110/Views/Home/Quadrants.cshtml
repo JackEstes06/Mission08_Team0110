@@ -8,10 +8,11 @@
     <br>
     <div class="row">
         <div class="col-2">
-            <a asp-controller="Home" asp-action="AddTask" type="button" class="btn btn-info rounded">Add a Task</a>
+            <form asp-controller="Home" asp-action="AddTask" method="get">
+                <button type="submit" class="btn btn-info rounded">Add a Task</button>
+            </form>
         </div>
-        <br>
-        <br>
+        <br/>
         <div class="col-5 border">
             <h4 class="text-center">Urgent</h4>
         </div>
@@ -38,6 +39,9 @@
                     if (t.Quadrant == 1)
                     {
                         <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "")/>
+                            </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
                             <td>@t.Category.CategoryName</td>
@@ -64,6 +68,9 @@
                     if (@t.Quadrant == 2)
                     {
                         <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "") />
+                            </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
                             <td>@t.Category.CategoryName</td>
@@ -94,6 +101,9 @@
                     if (@t.Quadrant == 3)
                     {
                         <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "") />
+                            </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
                             <td>@t.Category.CategoryName</td>
@@ -119,6 +129,9 @@
                     if (@t.Quadrant == 4)
                     {
                         <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input" @(t.Completed ? "checked" : "") />
+                            </td>
                             <td>@t.TaskName</td>
                             <td>@t.DueDate</td>
                             <td>@t.Category.CategoryName</td>
